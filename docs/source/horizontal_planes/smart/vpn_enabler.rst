@@ -139,7 +139,7 @@ Response example:
 
 
 Client configuration file template
-*************************************
+**********************************
 
 ::
 
@@ -156,7 +156,7 @@ Client configuration file template
 
 
 Connect to the VPN
-***********************
+******************
 
 In Windows, use the TunSafe VPN client (https://tunsafe.com/):
 
@@ -218,7 +218,7 @@ Developer guide
 ***************
 
 Local code development
-**************************
+**********************
 
 1. Install WireGuard in the machine: https://www.wireguard.com/install/ 
 2. Create a WireGuard network interface for testing. A configuration file example for creating the interfacecan be found at the section below.
@@ -243,10 +243,10 @@ Local code development
 
 
 WireGuard network interface configuration file
-**************************************************
+**********************************************
 
 Template
-----------
+--------
 
 ::
 
@@ -258,7 +258,7 @@ Template
   PrivateKey = <wg_private_key>
 
 Example
-----------
+-------
 
 ::
 
