@@ -22,7 +22,7 @@ Furthermore, a REST API is included to facilitate the administration of the VPN 
 
 NOTE1: At this moment, the enabler persists the data in a MongoDB database, which also is included in the Helm chart. When the LTSE enabler is ready, the information will be persisted in it.
 
-NOTE2: This enabler is limited to one replica in each Kubernetes deployment and cannot be auto scaled due to its specific functionalities. If there are more than one replica, each pod will act as an independent VPN 
+NOTE2: At this point in time, this enabler is limited to one replica in each Kubernetes deployment and cannot be auto scaled due to its specific functionalities. If there are more than one replica, each pod will act as an independent VPN 
 because each pod will have its own WireGuard network interface at the container level which won’t be synchronized among them. For example, a new client will only be created or deleted in one pod.
 
 NOTE3: At this moment, to connect two host machines directly using a VPN (for instance, to add it as a remote k8s cluster/node via VPN), it is recommended to use a VPN without using the containerised version. 
@@ -47,32 +47,32 @@ User guide
 
 REST API endpoints
 *******************
-+--------+------------+-----------------------------------------------------------------------+---------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------+
-| Method | Endpoint   | Description                                                           | Payload (if needed)                         | Response format                                                                                                                                |
-+========+============+=======================================================================+=============================================+================================================================================================================================================+
-| GET    | /info      | Get information of the WireGuard network interface                    |                                             | WireGuard output command in plain text                                                                                                         |
-+--------+------------+-----------------------------------------------------------------------+---------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------+
-| GET    | /info/conf | Get the configuration file of the WireGuard network interface         |                                             | WireGuard configuration file in plain text                                                                                                     |
-+--------+------------+-----------------------------------------------------------------------+---------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------+
-| GET    | /keys      | Obtain the public, private and pre-shared keys to create a new client |                                             | {"public":String, "private":String, "preshared":String}                                                                                        |
-+--------+------------+-----------------------------------------------------------------------+---------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------+
-| POST   | /client    | Create a new client                                                   | {"publicKey":String, "presharedKey":String} | {"serverPublicKey":"vpn_server_public_key", "serverIP":String, "serverPort":Integer, "clientIP":String, "allowedIPs":String, "message":String} |
-+--------+------------+-----------------------------------------------------------------------+---------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------+
-| DELETE | /client    | Delete a client                                                       | {"publicKey":String}                        |                                                                                                                                                |
-+--------+------------+-----------------------------------------------------------------------+---------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------+
-| PUT    | /client    | Enable a client                                                       | {"publicKey":String}                        |                                                                                                                                                |
-+--------+------------+-----------------------------------------------------------------------+---------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------+
-| PUT    | /client    | Disable a client                                                      | {"publicKey":String}                        |                                                                                                                                                |
-+--------+------------+-----------------------------------------------------------------------+---------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------+
++--------+-----------------+-----------------------------------------------------------------------+---------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------+
+| Method | Endpoint        | Description                                                           | Payload (if needed)                         | Response format                                                                                                               |
++========+=================+=======================================================================+=============================================+===============================================================================================================================+
+| GET    | /info           | Get information of the WireGuard network interface                    |                                             | WireGuard output command in plain text                                                                                        |
++--------+-----------------+-----------------------------------------------------------------------+---------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------+
+| GET    | /info/conf      | Get the configuration file of the WireGuard network interface         |                                             | WireGuard configuration file in plain text                                                                                    |
++--------+-----------------+-----------------------------------------------------------------------+---------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------+
+| GET    | /keys           | Obtain the public, private and pre-shared keys to create a new client |                                             | {"public":String, "private":String, "preshared":String}                                                                       |
++--------+-----------------+-----------------------------------------------------------------------+---------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------+
+| POST   | /client         | Create a new client                                                   | {"publicKey":String, "presharedKey":String} | {"serverPublicKey":String, "serverIP":String, "serverPort":Integer, "clientIP":String, "allowedIPs":String, "message":String} |
++--------+-----------------+-----------------------------------------------------------------------+---------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------+
+| DELETE | /client         | Delete a client                                                       | {"publicKey":String}                        |                                                                                                                               |
++--------+-----------------+-----------------------------------------------------------------------+---------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------+
+| PUT    | /client/enable  | Enable a client                                                       | {"publicKey":String}                        |                                                                                                                               |
++--------+-----------------+-----------------------------------------------------------------------+---------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------+
+| PUT    | /client/disable | Disable a client                                                      | {"publicKey":String}                        |                                                                                                                               |
++--------+-----------------+-----------------------------------------------------------------------+---------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------+
 
 Generate a WireGuard server private key
 ******************************************
 
 Using the WireGuard cli:
 
-.. code-block:: bash
+  .. code-block:: bash
 
-  wg genkey
+    wg genkey
 
 
 Create a VPN client
@@ -95,7 +95,7 @@ Response example:
         "preshared": "FIOSD2ErZISlHwFsBRK5RVyd7ENhvJ4x3W101BoewqQ="
       }
 
-2. Create a client in the API sending an HTTP POST request to the /client endpoint, including the generated public and pre-shared keys in the request body.
+2. Create a client in the API making an HTTP POST request to the /client endpoint, including the generated public and pre-shared keys in the request body.
 
   .. code-block:: bash
 
@@ -119,7 +119,7 @@ Response example:
       "message": "Peer added successfully"
     }
 
-3. Create the WireGuard client configuration file (with **.conf** file extension) with the data obtained in the responses of the last two requests. 
+3. Create the WireGuard client configuration file (**.conf** file extension) with the data obtained in the responses of the last two requests. 
    A complete example filled with the responses of the last two example requests is provided, and, furtheremore, a configuration file template can be found in the next subsection.
 
   ::
@@ -135,7 +135,7 @@ Response example:
     Endpoint = 192.168.1.67:51820
     PersistentKeepalive = 25
 
-4. Connect to the VPN using a WireGuard client program.
+4. Connect to the VPN using a WireGuard client program. The instructions are provided in the *Connect to the VPN* subsection.
 
 
 Client configuration file template
@@ -151,7 +151,7 @@ Client configuration file template
   PublicKey = <wg_server_public_key>
   PresharedKey = <wg_preshared_key>
   AllowedIPs = <wg_allowed_IPs>
-  Endpoint = <wg_server_IP_address>:<wg_server_udp_port>
+  Endpoint = <wg_server_IP_address_or_DNS_name>:<wg_server_udp_port>
   PersistentKeepalive = <number_of_seconds> (no mandatory)
 
 
@@ -167,7 +167,7 @@ In Windows, use the TunSafe VPN client (https://tunsafe.com/):
 
 In Linux, use the WireGuard cli.
 
-1. Install WireGuard
+1. Install WireGuard and WireGuard tools
 2. Create the WireGuard configuration file
 3. Create the WireGuard interface and connect to the VPN:
 
@@ -187,10 +187,10 @@ Prerequisites
 ***************
 In Linux, set these sysctl values:
 
-::
+  ::
 
-  sysctl net.ipv4.ip_forward=1
-  sysctl net.ipv4.conf.all.src_valid_mark=1
+    sysctl net.ipv4.ip_forward=1
+    sysctl net.ipv4.conf.all.src_valid_mark=1
 
 ***************
 Installation
@@ -220,7 +220,7 @@ Developer guide
 Local code development
 **********************
 
-1. Install WireGuard in the machine: https://www.wireguard.com/install/ 
+1. Install WireGuard and WireGuard tools in the machine: https://www.wireguard.com/install/ 
 2. Create a WireGuard network interface for testing. A configuration file example for creating the interfacecan be found at the section below.
 3. In Linux, add *sudo* before all the *wg* commands to run the API without being containerized, e.g.:
 
@@ -228,14 +228,14 @@ Local code development
 
     utils/index.js, line 34:    await exec(`wg ...   -->   await exec(`sudo wg ... )
 
-4. Execute: 
+4. Install the dependencies. Execute: 
 
   .. code-block:: bash
 
     npm install
 
 
-5. Execute:
+5. Run the enabler in development mode. Execute:
 
   .. code-block:: bash
 
