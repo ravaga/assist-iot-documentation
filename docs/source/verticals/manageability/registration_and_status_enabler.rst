@@ -50,7 +50,7 @@ To deploy a new enabler, click on the *Add a new enabler* button and a form will
 - **Use the Auto scheduler functionality of the Smart Orchestrator**: check the *Auto scheduler* checkbox and select a *Placement policy*. For more infomation about these policies,
   see the Smart Orchestrator entry.
 
-The deployment of the new enabler can be configured by filling the *Additional parameters* box with a raw JSON object. The values of this JSON will replace the default values 
+The deployment of the new enabler can be configured by filling the *Additional parameters* box with a raw JSON object. The values included in this JSON object will replace the default values 
 of the *values.yaml* file of the enabler Helm chart. In future versions, the challenge is to customize this form for each enabler, including all the customizable parameters in a user-friendly way.
 
 .. figure:: ./enabler_form.png
