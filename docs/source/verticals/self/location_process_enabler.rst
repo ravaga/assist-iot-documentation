@@ -1,8 +1,8 @@
 .. _Location processing:
 
-###################
-Location processing
-###################
+###########################
+Location Processing Enabler
+###########################
 
 .. contents::
   :local:
