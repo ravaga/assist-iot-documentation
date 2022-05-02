@@ -84,13 +84,12 @@ This enabler is part of the Tactile dashboard enabler, so see the installation s
 *********************
 Configuration options
 *********************
-Not applicable.
+Will be determined after the release of the enabler.
 
 ***************
 Developer guide
 ***************
-For more information, read the `PUI9 wiki <https://gitlab.assist-iot.eu/wp4/applications/dashboard-pui9/-/wikis/home>`_ at Gitlab
-or read the `Tactile dashboard enabler entry <https://assist-iot-enablers-documentation.readthedocs.io/en/latest/horizontal_planes/application/tactile_dashboard_enabler.html>`_
+For more information, read the `Tactile dashboard enabler entry <https://assist-iot-enablers-documentation.readthedocs.io/en/latest/horizontal_planes/application/tactile_dashboard_enabler.html>`_
 
 ***************************
 Version control and release
