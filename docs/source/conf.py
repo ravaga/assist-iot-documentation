@@ -12,8 +12,20 @@ extensions = [
     'sphinx.ext.doctest',
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
-    'sphinx.ext.intersphinx',
-]
+    'sphinx.ext.intersphinx', 
+    'sphinx.ext.todo', 
+    'sphinx.ext.viewcode', 
+    'sphinx.ext.intersphinx',  
+    'sphinx.ext.coverage', 
+    'sphinx.ext.mathjax', 
+    'sphinx.ext.ifconfig', 
+    'sphinx.ext.githubpages', 
+    'sphinx.ext.imgmath', 
+    'sphinx.ext.graphviz', 
+    'sphinx.ext.inheritance_diagram', 
+    'sphinx.ext.napoleon', 
+    'sphinx.ext.autosectionlabel', 
+    'sphinx.ext.extlinks']
 
 intersphinx_mapping = {
     'python': ('https://docs.python.org/3/', None),
