@@ -70,6 +70,7 @@ HTTP interface
 1 Parametrization refers to access to input or output data in JSON (with
 `JSONPath <https://support.smartbear.com/alertsite/docs/monitors/api/endpoint/jsonpath.html>`__),
 string, or byte string format. To do that, a special syntax is provided.
+
 *********************
 Place in architecture
 *********************
@@ -88,9 +89,8 @@ database before starting the application. So that queries have access to
 the required tables and data.
 
 
-
 User guide HTTP interface
-=========================
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Definitions
 -----------
@@ -224,16 +224,13 @@ Output topic (*outputTopic*)
 Topic where the output is published.
 
 =============================== ===============================
-==================
 Name                            Description                     Type
 =============================== ===============================
-==================
 name                            Topic name                      string
 publishEmptyOutput \ *optional* Whether to publish empty output boolean
 publishWhen \ *optional*        When to publish                 publishWhen
 publishFlags \ *optional*       Publish flags                   array[publishFlag]
 =============================== ===============================
-==================
 
 .. code:: json
 
@@ -243,10 +240,11 @@ publishFlags \ *optional*       Publish flags                   array[publishFla
      "publishWhen": "success",
      "publishEmptyOutput": false
    }
+
 Input settings (*inputSettings*)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-MQTT input settings. \| Name \| Description \| Type \| \|——|————-|——\|
+MQTT input settings. \| Name \| Description \| Type \| \|————\|
 \| host \| MQTT host \| string \| \| port \| MQTT port \| number \| \|
 username \ *optional* \| Client credentials \| string \| \| password
 \ *optional* \| Client credentials \| string \| \| topics \ *optional*
@@ -270,7 +268,7 @@ username \ *optional* \| Client credentials \| string \| \| password
 Output settings (*outputSettings*)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-MQTT output settings. \| Name \| Description \| Type \| \|——|————-|——\|
+MQTT output settings. \| Name \| Description \| Type \| \|————\|
 \| host \| MQTT host \| string \| \| port \| MQTT port \| number \| \|
 username \ *optional* \| Client credentials \| string \| \| password
 \ *optional* \| Client credentials \| string \| \| topics \ *optional*
@@ -307,7 +305,7 @@ username \ *optional* \| Client credentials \| string \| \| password
 Query (*query*)
 ~~~~~~~~~~~~~~~
 
-Query configuration. \| Name \| Description \| Type \| \|——|————-|——\|
+Query configuration. \| Name \| Description \| Type \| \|————\|
 \| name \ *required* \| Unique query name \| string \| \| inputSettings
 \ *optional* \| Input settings \| inputSettings \| \| outputSettings
 \ *optional* \| Output settings \| outputSettings \| \| sql \ *required*
@@ -662,12 +660,12 @@ Prerequisites
 -  `Docker Compose <https://docs.docker.com/compose/>`__
 
 
-
+***************
 Installation
-============
+***************
 
 Development environment
------------------------
+^^^^^^^^^^^^^^^^^^^^^^^
 
 For development, run the following scripts:
 
@@ -717,12 +715,12 @@ The ``prod-app.sh`` script starts the application. The application is
 accessible at ``localhost:8080``.
 
 
-
+***************
 Configuration
-=============
+***************
 
 Application
------------
+^^^^^^^^^^^
 
 The app can be configured via environment variables. - ``HTTP_PORT``:
 port at which the API is accessible, i.e. \ *8080* -
@@ -736,19 +734,19 @@ i.e. \ *geolocation_user* - ``DB_GEOLOCATION_PASSWORD``:
 i.e. \ *postgres123*
 
 
-
+***************
 Developer guide
-===============
+***************
 
 Environment
------------
+^^^^^^^^^^^
 
 Refer to the `installation
 guide <https://magnetic-fields.ibspan.waw.pl/assist-iot/wp5/location-processing/-/wikis/installation>`__
 to setup the environment.
 
 Scripts
--------
+^^^^^^^
 
 The development scripts are located in ``scripts`` directory. -
 ``check.sh`` runs linter (in check mode) and tests - ``clean.sh`` cleans
@@ -767,14 +765,15 @@ Configs for ``scalafmt``, ``scalafix``, and ``scalastyle`` can be found
 in the ``configs`` directory.
 
 
-
-Version control and releases
-============================
+***************************
+Version control and release
+***************************
 
 *The enabler is under development.*
 
 
 
+***************
 License
 ***************
 The Location Processing is licensed under the **Apache License, Version
@@ -782,9 +781,10 @@ The Location Processing is licensed under the **Apache License, Version
 
 One may obtain a copy of the License at
 http://www.apache.org/licenses/LICENSE-2.0
-***************
-Notice (dependencies)
-***************
+
+********************
+Notice(dependencies)
+********************
 Dependency list and licensing information will be provided before the
 first major release.
 

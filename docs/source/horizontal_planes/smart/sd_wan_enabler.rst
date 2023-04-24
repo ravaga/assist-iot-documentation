@@ -1,5 +1,5 @@
-.. image:: https://user-images.githubusercontent.com/100677511/170439941-58810f43-b437-41e5-9976-899b60cf1e5e.png
-   :alt: image-3
+.. image:: ./images/sd_wan_enabler/assist-IoT-logo.png
+   :alt: assist-IoT-logo
 
 SD-WAN enabler
 ==============
@@ -221,7 +221,18 @@ Version control and release
 License
 -------
 
-Will be determined after the release of the enabler.
+Copyright 2023 Raúl Reinosa Simón (Universitat Politècnica de València)
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+You may obtain a copy of the License at 
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 
 Notice (dependencies)
 ---------------------
