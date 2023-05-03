@@ -3,7 +3,8 @@
 project = 'ASSIST-IoT'
 
 release = '0.1'
-version = '0.1.0'
+# version = '0.1.0'
+
 
 # -- General configuration
 
@@ -34,6 +35,11 @@ intersphinx_mapping = {
 intersphinx_disabled_domains = ['std']
 
 templates_path = ['_templates']
+
+
+# List of versions to build
+versions = ['M18', 'M30', 'latest']
+
 
 # -- Options for HTML output
 
